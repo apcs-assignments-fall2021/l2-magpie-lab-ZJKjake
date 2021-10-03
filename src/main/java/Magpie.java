@@ -53,6 +53,7 @@ public class Magpie {
         } else if ((findWord(statement, "school")) >= 0) {
             response = "Tell me about your favorite subject";
         }
+        else
         {
             response = getRandomResponse();
         }
@@ -100,10 +101,10 @@ public class Magpie {
 
         String s=str.toLowerCase();
         String w=word.toLowerCase();
-        System.out.println(w);
-        System.out.println(s);
         int spot=s.indexOf(w);
-        System.out.println(spot);
+        if (spot==-1){
+            return -1;
+        }
         if (spot==0||spot==s.length()-w.length()) {
             return spot;
         }
@@ -143,10 +144,15 @@ public class Magpie {
      * @param statement the user statement, assumed to contain "I" followed by "you"
      * @return the transformed statement
      */
-    public String transformIYouStatement(String statement)
-    {
-        //your code here
-        return "";
+    public String transformIYouStatement(String statement) {
+        String result ="";
+        if (findWord(statement, "I") >= 0 && findWord(statement, "you") >= 0) {
+            int spot=findWord(statement, "I");
+            int spot2=findWord(statement, "you");
+            result = "Why do you "+statement.substring(spot+2,spot2-1)+" me?";
+        }
+
+        return result;
     }
 
     /**
@@ -155,12 +161,15 @@ public class Magpie {
      * @param statement the user statement, assumed to contain "I want to"
      * @return the transformed statement
      */
-    public String transformIWantToStatement(String statement)
-    {
-        // your code here
-        return "";
-    }
+    public String transformIWantToStatement(String statement) {
+        String result ="";
+        if (findWord(statement, "I want to") >= 0) {
+            int spot=findWord(statement, "I want to");
+            result = "What would it mean to "+statement.substring(spot+10)+"?";
+        }
 
+        return result;
+    }
 
 
 
@@ -170,9 +179,26 @@ public class Magpie {
      * @param statement the user statement, assumed to contain "you" followed by "me"
      * @return the transformed statement
      */
-    public String transformYouMeStatement(String statement)
-    {
-        // your code here
-        return "";
+    public String transformYouMeStatement(String statement) {
+        String result ="";
+        if (findWord(statement, "you") >= 0 && findWord(statement, "me") >= 0) {
+            int spot=findWord(statement, "you");
+            int spot2=findWord(statement, "me");
+            result = "What makes you think that I "+statement.substring(spot+4,spot2-1)+" you?";
+        }
+
+        return result;
+    }
+
+    public String transformIHateStatement(String statement) {
+        String result ="";
+        if (findWord(statement, "I hate") >= 0) {
+            int spot=findWord(statement, "I hate");
+            result = "Why do you hate "+statement.substring(spot+7)+"?";
+        }
+
+        return result;
     }
 }
+
+
