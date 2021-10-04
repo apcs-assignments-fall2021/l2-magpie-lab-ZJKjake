@@ -17,7 +17,7 @@ public class Magpie {
      * @return a greeting
      */
     public String getGreeting() {
-        return "Hello, let's talk.";
+        return "Hi there!";
     }
 
     /**
@@ -52,6 +52,8 @@ public class Magpie {
             response = "Tell me more about the food.";
         } else if ((findWord(statement, "school")) >= 0) {
             response = "Tell me about your favorite subject";
+        } else if ((findWord(statement, "meme")) >= 0) {
+        response = "Tell me about the meme.";
         }
         else
         {
@@ -80,10 +82,12 @@ public class Magpie {
         } else if (whichResponse == 3) {
             response = "You don't say.";
         } else if (whichResponse == 4) {
-            response = "OK";
+            response = "okay.";
         } else if (whichResponse == 5) {
             response = "I guess you are right";
-        }
+        } else if (whichResponse == 6) {
+        response = "Alright.";
+    }
 
         return response;
     }
